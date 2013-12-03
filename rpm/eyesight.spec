@@ -7,15 +7,16 @@ License:        GPLv2+
 URL:            https://github.com/mauios/eyesight
 Source:         %{name}-%{version}.tar.xz
 
-BuildRequires:  pkgconfig(liblzma)
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Widgets)
-BuildRequires:  pkgconfig(Qt5PrintSupport)
+BuildRequires:  qt5-qtcore-devel
+BuildRequires:  qt5-qtgui-devel
+BuildRequires:  qt5-qtwidgets-devel
+BuildRequires:  qt5-qtprintsupport-devel
 BuildRequires:  cmake
 BuildRequires:  bzip2-devel
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  desktop-file-utils
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
 
 
 %description
@@ -39,6 +40,12 @@ rm -rf %{buildroot}
 desktop-file-install --delete-original              \
   --dir %{buildroot}%{_datadir}/applications        \
    %{buildroot}%{_datadir}/applications/*.desktop
+
+
+%post -p /sbin/ldconfig
+
+
+%postun -p /sbin/ldconfig
 
 
 %files -f %{name}.lang
