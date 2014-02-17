@@ -48,7 +48,8 @@ desktop-file-install --delete-original              \
 %postun -p /sbin/ldconfig
 
 
-%files -f %{name}.lang
+##%files -f %{name}.lang
+%files
 %defattr(-,root,root,-)
 %{_bindir}/eyesight
 %{_datadir}/applications/eyesight.desktop
@@ -56,6 +57,6 @@ desktop-file-install --delete-original              \
 %dir %{_datadir}/eyesight/translations
 # These short-named translations probably need renaming upstream, since they
 # are not picked up by find_lang
-%{_datadir}/eyesight/translations/??.qm
+%{_datadir}/eyesight/translations/*
 %doc COPYING
 %doc README.md
