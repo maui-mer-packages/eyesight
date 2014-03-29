@@ -1,0 +1,35 @@
+Name       : eyesight
+Version    : 0.1.2
+Release    : 1
+Group      : Applications/System
+License    : GPLv2+
+URL        : https://github.com/mauios/eyesight.git
+Summary    : Hawaii desktop image viewer
+Description: Image viewer for the Hawaii desktop.
+Sources    :
+    - eyesight-%{version}.tar.xz
+SetupOptions: -q -n %{name}-%{version}/upstream
+
+Configure  : cmake
+ConfigOptions:
+    - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+
+PkgConfigBR:
+    - liblzma
+    - Qt5Core
+    - Qt5Gui
+    - Qt5Widgets
+    - Qt5PrintSupport
+
+PkgBR:
+    - cmake
+    - bzip2-devel
+    - qt5-qttools-linguist
+
+Files:
+    - "%doc COPYING README.md"
+    - "%{_bindir}/eyesight"
+    - "%{_datadir}/applications/eyesight.desktop"
+    - "%dir %{_datadir}/eyesight"
+    - "%dir %{_datadir}/eyesight/translations"
+    - "%{_datadir}/eyesight/translations/*"
